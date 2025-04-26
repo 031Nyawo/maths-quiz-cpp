@@ -2,45 +2,180 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Math Quiz Levels</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Math Quiz Website</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #e0f7fa;
-      text-align: center;
-      padding: 50px 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
     }
 
-    h1 {
-      color: #00796b;
-      margin-bottom: 40px;
-    }
-
-    .button {
-      display: block;
-      margin: 20px auto;
-      padding: 15px 30px;
-      font-size: 18px;
-      background-color: #00796b;
+    header {
+      background-color: #0066cc;
       color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    section {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .difficulty-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .difficulty-buttons button {
+      padding: 12px 20px;
+      font-size: 16px;
       border: none;
       border-radius: 8px;
-      text-decoration: none;
-      width: 200px;
+      cursor: pointer;
+      background-color: #0066cc;
+      color: white;
+      transition: 0.3s;
     }
 
-    .button:hover {
-      background-color: #004d40;
+    .difficulty-buttons button:hover {
+      background-color: #004999;
+    }
+
+    .quiz-section {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .quiz-section.active {
+      display: block;
+    }
+
+    .question {
+      margin: 10px 0;
+    }
+
+    .download-panel {
+      text-align: center;
+    }
+
+    .download-panel a {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .download-panel a:hover {
+      background-color: #388e3c;
+    }
+
+    .readme-link {
+      display: block;
+      margin-top: 10px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #555;
     }
   </style>
+  <script>
+    function showQuiz(level) {
+      const sections = document.querySelectorAll('.quiz-section');
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(level).classList.add('active');
+    }
+  </script>
 </head>
 <body>
-  <h1>Select Math Quiz Difficulty</h1>
 
-  <a href="easy.html" class="button">🟢 Easy</a>
-  <a href="medium.html" class="button">🟡 Medium</a>
-  <a href="hard.html" class="button">🔴 Hard</a>
+  <header>
+    <h1>🧠 Math Quiz Website</h1>
+    <p>Choose your level and test your brain!</p>
+  </header>
+
+  <main>
+
+    <!-- Difficulty Selector -->
+    <section>
+      <h2>Select Your Difficulty Level</h2>
+      <div class="difficulty-buttons">
+        <button onclick="showQuiz('easy')">Easy</button>
+        <button onclick="showQuiz('medium')">Medium</button>
+        <button onclick="showQuiz('hard')">Hard</button>
+      </div>
+
+      <!-- Easy Questions -->
+      <div id="easy" class="quiz-section">
+        <h3>🟢 Easy Level</h3>
+        <div class="question">1. What is 2 + 3?</div>
+        <div class="question">2. What is 5 - 1?</div>
+        <div class="question">3. What is 4 + 6?</div>
+      </div>
+
+      <!-- Medium Questions -->
+      <div id="medium" class="quiz-section">
+        <h3>🟡 Medium Level</h3>
+        <div class="question">1. What is 12 × 3?</div>
+        <div class="question">2. What is 45 ÷ 5?</div>
+        <div class="question">3. What is 25 + 17?</div>
+      </div>
+
+      <!-- Hard Questions -->
+      <div id="hard" class="quiz-section">
+        <h3>🔴 Hard Level</h3>
+        <div class="question">1. What is 15²?</div>
+        <div class="question">2. What is √144?</div>
+        <div class="question">3. Solve: (8 + 2) × 5</div>
+      </div>
+    </section>
+
+    <!-- C++ Game Access -->
+    <section>
+      <h2>🎮 Play the Terminal Math Flash Game (C++)</h2>
+      <p style="text-align: center;">
+        Want a challenge from the command line? Download and run our C++ version of the math quiz game!
+      </p>
+      <div class="download-panel">
+        <a href="math_flash_game.cpp" download>📥 Download Game (.cpp)</a>
+        <a class="readme-link" href="https://github.com/031Nyawo/YOUR_REPO#-terminal-math-flash-game-c" target="_blank">📖 View Instructions</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2025 MathQuizProject. All rights reserved.
+  </footer>
+
 </body>
 </html>
+
 
