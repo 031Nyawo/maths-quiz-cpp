@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hard Math Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      background-color: #ffebee;
+    }
+
+    h1 {
+      color: #c62828;
+      text-align: center;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #c62828;
+      color: white;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔴 Hard Quiz</h1>
+
+  <div class="question">
+    <label>1. What is (12 × 4) + 6?</label>
+    <input type="text" id="q1">
+  </div>
+
+  <div class="question">
+    <label>2. What is (45 ÷ 5) × 2?</label>
+    <input type="text" id="q2">
+  </div>
+
+  <div class="question">
+    <label>3. What is 10² - 36?</label>
+    <input type="text" id="q3">
+  </div>
+
+  <button onclick="checkAnswers()">Submit</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function checkAnswers() {
+      const answers = [54, 18, 64];
+      const userAnswers = [
+        parseInt(document.getElementById("q1").value),
+        parseInt(document.getElementById("q2").value),
+        parseInt(document.getElementById("q3").value)
+      ];
+
+      let score = 0;
+      for (let i = 0; i < answers.length; i++) {
+        if (userAnswers[i] === answers[i]) score++;
+      }
+
+      document.getElementById("result").innerText = 
+        `You got ${score} out of 3 correct!`;
+    }
+  </script>
+</body>
+</html>
