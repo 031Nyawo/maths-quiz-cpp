@@ -1,21 +1,105 @@
 
-# Math Quiz Website
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Math Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
 
-This is a simple interactive math quiz built using **HTML**, **CSS**, and **JavaScript**, hosted on **GitHub Pages**.
+    h1 {
+      text-align: center;
+      color: #333;
+    }
 
-💻 Try it live: [https://your-username.github.io/math-quiz-cpp](https://your-username.github.io/math-quiz-cpp)
+    .question {
+      margin-bottom: 20px;
+    }
 
-## Features
-- 3 basic math questions
-- Instant feedback on your score
-- Clean, mobile-friendly design
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
 
-## How to Use
-1. Open the website
-2. Answer the questions
-3. Click "Submit Answers" to get your score
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
 
-## Future Plans
-- Add more questions
-- Track score history
-- Randomize quizzes
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      display: block;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Basic Math Quiz</h1>
+
+  <div class="question">
+    <label>1. What is 3 + 5?</label>
+    <input type="text" id="q1" />
+  </div>
+
+  <div class="question">
+    <label>2. What is 10 - 7?</label>
+    <input type="text" id="q2" />
+  </div>
+
+  <div class="question">
+    <label>3. What is 4 × 6?</label>
+    <input type="text" id="q3" />
+  </div>
+
+  <button onclick="checkAnswers()">Submit Answers</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function checkAnswers() {
+      const answers = [8, 3, 24];
+      const userAnswers = [
+        parseInt(document.getElementById("q1").value),
+        parseInt(document.getElementById("q2").value),
+        parseInt(document.getElementById("q3").value)
+      ];
+
+      let score = 0;
+
+      for (let i = 0; i < answers.length; i++) {
+        if (userAnswers[i] === answers[i]) {
+          score++;
+        }
+      }
+
+      document.getElementById("result").innerText = `You got ${score} out of 3 correct.`;
+    }
+  </script>
+</body>
+</html>
