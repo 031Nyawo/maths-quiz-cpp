@@ -1,105 +1,46 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Math Quiz</title>
+  <title>Math Quiz Levels</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
+      background-color: #e0f7fa;
+      text-align: center;
+      padding: 50px 20px;
     }
 
     h1 {
-      text-align: center;
-      color: #333;
+      color: #00796b;
+      margin-bottom: 40px;
     }
 
-    .question {
-      margin-bottom: 20px;
-    }
-
-    label {
+    .button {
       display: block;
-      margin-bottom: 5px;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #007bff;
+      margin: 20px auto;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #00796b;
       color: white;
       border: none;
-      cursor: pointer;
-      margin-top: 10px;
-      display: block;
-      width: 100%;
+      border-radius: 8px;
+      text-decoration: none;
+      width: 200px;
     }
 
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    .result {
-      font-weight: bold;
-      margin-top: 20px;
-      text-align: center;
-      font-size: 18px;
+    .button:hover {
+      background-color: #004d40;
     }
   </style>
 </head>
 <body>
-  <h1>Basic Math Quiz</h1>
+  <h1>Select Math Quiz Difficulty</h1>
 
-  <div class="question">
-    <label>1. What is 3 + 5?</label>
-    <input type="text" id="q1" />
-  </div>
-
-  <div class="question">
-    <label>2. What is 10 - 7?</label>
-    <input type="text" id="q2" />
-  </div>
-
-  <div class="question">
-    <label>3. What is 4 × 6?</label>
-    <input type="text" id="q3" />
-  </div>
-
-  <button onclick="checkAnswers()">Submit Answers</button>
-
-  <div class="result" id="result"></div>
-
-  <script>
-    function checkAnswers() {
-      const answers = [8, 3, 24];
-      const userAnswers = [
-        parseInt(document.getElementById("q1").value),
-        parseInt(document.getElementById("q2").value),
-        parseInt(document.getElementById("q3").value)
-      ];
-
-      let score = 0;
-
-      for (let i = 0; i < answers.length; i++) {
-        if (userAnswers[i] === answers[i]) {
-          score++;
-        }
-      }
-
-      document.getElementById("result").innerText = `You got ${score} out of 3 correct.`;
-    }
-  </script>
+  <a href="easy.html" class="button">🟢 Easy</a>
+  <a href="medium.html" class="button">🟡 Medium</a>
+  <a href="hard.html" class="button">🔴 Hard</a>
 </body>
 </html>
+
