@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Math Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Math Quiz</h1>
+
+  <div id="quiz">
+    <div class="question">
+      <label>1. What is 5 + 3?</label><br>
+      <input type="number" id="q1">
+    </div>
+
+    <div class="question">
+      <label>2. What is 9 - 4?</label><br>
+      <input type="number" id="q2">
+    </div>
+
+    <div class="question">
+      <label>3. What is 6 × 7?</label><br>
+      <input type="number" id="q3">
+    </div>
+
+    <button onclick="checkAnswers()">Submit Answers</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      const answers = [8, 5, 42];
+      const userAnswers = [
+        parseInt(document.getElementById("q1").value),
+        parseInt(document.getElementById("q2").value),
+        parseInt(document.getElementById("q3").value)
+      ];
+
+      let score = 0;
+      for (let i = 0; i < answers.length; i++) {
+        if (userAnswers[i] === answers[i]) {
+          score++;
+        }
+      }
+
+      document.getElementById("result").innerText = 
+        `You scored ${score} out of ${answers.length}!`;
+    }
+  </script>
+
+</body>
+</html>
