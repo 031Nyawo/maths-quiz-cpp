@@ -2,262 +2,228 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Math Quiz Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Math & C++ Quiz</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #eef2f3, #8e9eab);
+      color: #333;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-      text-align: center;
     }
 
     header {
-      background-color: #4CAF50;
+      background: #2c3e50;
       color: white;
-      width: 100%;
-      padding: 20px;
+      padding: 1rem;
       text-align: center;
     }
 
-    h1 {
-      font-size: 36px;
-      margin: 0;
+    .container {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
     }
 
-    h2 {
-      margin-top: 10px;
-      font-size: 22px;
-    }
-
-    .quiz-container {
-      background-color: white;
-      width: 80%;
-      max-width: 500px;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-top: 30px;
-    }
-
-    .difficulty-buttons {
+    .level-buttons {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
 
-    .difficulty-buttons button {
-      padding: 12px 20px;
+    .level-buttons button {
+      padding: 0.75rem 1.5rem;
       font-size: 16px;
-      border: none;
-      border-radius: 8px;
       cursor: pointer;
-      background-color: #4CAF50;
+      border: none;
+      background-color: #3498db;
       color: white;
-      transition: 0.3s;
+      border-radius: 10px;
+      transition: background-color 0.3s;
     }
 
-    .difficulty-buttons button:hover {
-      background-color: #45a049;
+    .level-buttons button:hover {
+      background-color: #2980b9;
     }
 
-    .quiz-section {
+    .question-panel {
       display: none;
-      margin-top: 20px;
-    }
-
-    .quiz-section.active {
-      display: block;
+      margin-top: 1rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     .question {
-      margin-bottom: 15px;
-      font-size: 18px;
+      margin-bottom: 1.5rem;
     }
 
-    input[type="number"] {
-      padding: 8px;
-      width: 80%;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+    .question p {
+      margin: 0.5rem 0;
+    }
+
+    label {
+      display: block;
+      margin-left: 1rem;
+      margin-bottom: 0.3rem;
     }
 
     .submit-btn {
-      padding: 10px 20px;
-      margin-top: 20px;
-      border: none;
-      background-color: #4CAF50;
+      padding: 0.5rem 1rem;
+      background-color: #27ae60;
       color: white;
-      font-size: 18px;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
-      border-radius: 8px;
     }
 
     .submit-btn:hover {
-      background-color: #45a049;
+      background-color: #1e8449;
     }
 
     .feedback {
-      margin-top: 20px;
-      font-size: 18px;
+      margin-top: 1rem;
       font-weight: bold;
     }
 
-    .correct {
-      color: green;
-    }
-
-    .incorrect {
-      color: red;
-    }
-
     footer {
-      margin-top: 40px;
-      padding: 10px;
-      font-size: 14px;
-      color: #555;
-      background-color: #f1f1f1;
-      width: 100%;
       text-align: center;
+      padding: 1rem;
+      background: #ecf0f1;
+      margin-top: 2rem;
     }
   </style>
-  <script>
-    function showQuiz(level) {
-      const sections = document.querySelectorAll('.quiz-section');
-      sections.forEach(sec => sec.classList.remove('active'));
-      document.getElementById(level).classList.add('active');
-    }
-
-    function checkAnswers(level) {
-      let score = 0;
-      let totalQuestions = 0;
-
-      // Easy level answers
-      if (level === 'easy') {
-        totalQuestions = 3;
-        const answer1 = document.getElementById('easy-answer-1').value;
-        const answer2 = document.getElementById('easy-answer-2').value;
-        const answer3 = document.getElementById('easy-answer-3').value;
-
-        if (answer1 == 5) score++;
-        if (answer2 == 4) score++;
-        if (answer3 == 10) score++;
-
-        document.getElementById('easy-feedback').innerHTML = `You got ${score} out of ${totalQuestions} correct!`;
-
-      // Medium level answers
-      } else if (level === 'medium') {
-        totalQuestions = 3;
-        const answer1 = document.getElementById('medium-answer-1').value;
-        const answer2 = document.getElementById('medium-answer-2').value;
-        const answer3 = document.getElementById('medium-answer-3').value;
-
-        if (answer1 == 36) score++;
-        if (answer2 == 9) score++;
-        if (answer3 == 42) score++;
-
-        document.getElementById('medium-feedback').innerHTML = `You got ${score} out of ${totalQuestions} correct!`;
-
-      // Hard level answers
-      } else if (level === 'hard') {
-        totalQuestions = 3;
-        const answer1 = document.getElementById('hard-answer-1').value;
-        const answer2 = document.getElementById('hard-answer-2').value;
-        const answer3 = document.getElementById('hard-answer-3').value;
-
-        if (answer1 == 225) score++;
-        if (answer2 == 12) score++;
-        if (answer3 == 50) score++;
-
-        document.getElementById('hard-feedback').innerHTML = `You got ${score} out of ${totalQuestions} correct!`;
-      }
-    }
-
-    // Fix the submit button to run the checkAnswers function
-    document.addEventListener('DOMContentLoaded', function() {
-      const submitButtons = document.querySelectorAll('.submit-btn');
-      submitButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
-          const level = event.target.parentElement.id;
-          checkAnswers(level);
-        });
-      });
-    });
-  </script>
 </head>
 <body>
 
   <header>
-    <h1>Math Quiz Website</h1>
-    <h2>Test your math skills at different levels!</h2>
+    <h1>Math & C++ Quiz</h1>
+    <p>Select your difficulty level and answer the questions</p>
   </header>
 
-  <div class="quiz-container">
-    <h3>Select Your Difficulty Level</h3>
-    <div class="difficulty-buttons">
-      <button onclick="showQuiz('easy')">Easy</button>
-      <button onclick="showQuiz('medium')">Medium</button>
-      <button onclick="showQuiz('hard')">Hard</button>
+  <div class="container">
+    <div class="level-buttons">
+      <button onclick="showPanel('easy')">Easy</button>
+      <button onclick="showPanel('medium')">Medium</button>
+      <button onclick="showPanel('hard')">Hard</button>
     </div>
 
-    <!-- Easy Questions -->
-    <div id="easy" class="quiz-section">
-      <h3>Easy Level</h3>
+    <!-- Easy Panel -->
+    <div id="easy" class="question-panel">
+      <h2>Easy Questions</h2>
+
       <div class="question">
-        1. What is 2 + 3? 
-        <input type="number" placeholder="Your answer" id="easy-answer-1">
+        <p>1. What is 5 + 3?</p>
+        <label><input type="radio" name="easy-q1" value="6">6</label>
+        <label><input type="radio" name="easy-q1" value="7">7</label>
+        <label><input type="radio" name="easy-q1" value="8">8</label>
+        <label><input type="radio" name="easy-q1" value="9">9</label>
       </div>
+
       <div class="question">
-        2. What is 5 - 1? 
-        <input type="number" placeholder="Your answer" id="easy-answer-2">
+        <p>2. What is 9 - 4?</p>
+        <label><input type="radio" name="easy-q2" value="4">4</label>
+        <label><input type="radio" name="easy-q2" value="5">5</label>
+        <label><input type="radio" name="easy-q2" value="6">6</label>
+        <label><input type="radio" name="easy-q2" value="7">7</label>
       </div>
-      <div class="question">
-        3. What is 4 + 6? 
-        <input type="number" placeholder="Your answer" id="easy-answer-3">
-      </div>
-      <button class="submit-btn">Submit Answers</button>
+
+      <button class="submit-btn" onclick="submitAnswers('easy')">Submit Answers</button>
       <div id="easy-feedback" class="feedback"></div>
     </div>
 
-    <!-- Medium Questions -->
-    <div id="medium" class="quiz-section">
-      <h3>Medium Level</h3>
+    <!-- Medium Panel -->
+    <div id="medium" class="question-panel">
+      <h2>Medium Questions</h2>
+
       <div class="question">
-        1. What is 12 × 3? 
-        <input type="number" placeholder="Your answer" id="medium-answer-1">
+        <p>1. What is 12 × 4?</p>
+        <label><input type="radio" name="medium-q1" value="36">36</label>
+        <label><input type="radio" name="medium-q1" value="48">48</label>
+        <label><input type="radio" name="medium-q1" value="52">52</label>
+        <label><input type="radio" name="medium-q1" value="44">44</label>
       </div>
+
       <div class="question">
-        2. What is 45 ÷ 5? 
-        <input type="number" placeholder="Your answer" id="medium-answer-2">
+        <p>2. What is 100 ÷ 5?</p>
+        <label><input type="radio" name="medium-q2" value="20">20</label>
+        <label><input type="radio" name="medium-q2" value="25">25</label>
+        <label><input type="radio" name="medium-q2" value="30">30</label>
+        <label><input type="radio" name="medium-q2" value="35">35</label>
       </div>
-      <div class="question">
-        3. What is 25 + 17? 
-        <input type="number" placeholder="Your answer" id="medium-answer-3">
-      </div>
-      <button class="submit-btn">Submit Answers</button>
+
+      <button class="submit-btn" onclick="submitAnswers('medium')">Submit Answers</button>
       <div id="medium-feedback" class="feedback"></div>
     </div>
 
-    <!-- Hard Questions -->
-    <div id="hard" class="quiz-section">
-      <h3>Hard Level</h3>
+    <!-- Hard Panel -->
+    <div id="hard" class="question-panel">
+      <h2>Hard Questions</h2>
+
       <div class="question">
-        1. What is 15²? 
-        <input type="number" placeholder="Your answer" id="hard-answer-1">
+        <p>1. What is the output of the following C++ code?</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int x = 5;
+    cout &lt;&lt; x++ + ++x;
+    return 0;
+}
+</pre>
+        <label><input type="radio" name="hard-q1" value="10">10</label>
+        <label><input type="radio" name="hard-q1" value="11">11</label>
+        <label><input type="radio" name="hard-q1" value="12">12</label>
+        <label><input type="radio" name="hard-q1" value="13">13</label>
       </div>
+
       <div class="question">
-        2. What is √144? 
-        <input type="number" placeholder="Your answer" id="hard-answer-2">
+        <p>2. What does the <code>virtual</code> keyword do in C++?</p>
+        <label><input type="radio" name="hard-q2" value="A">A. Make a variable global</label>
+        <label><input type="radio" name="hard-q2" value="B">B. Allows overriding in derived classes</label>
+        <label><input type="radio" name="hard-q2" value="C">C. Memory allocation</label>
+        <label><input type="radio" name="hard-q2" value="D">D. Make class abstract</label>
       </div>
-      <div class="question">
-        3. Solve: (8 + 2) × 5 
-        <input type="number" placeholder="Your answer" id="hard-answer-3">
-      </
+
+      <button class="submit-btn" onclick="submitAnswers('hard')">Submit Answers</button>
+      <div id="hard-feedback" class="feedback"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Made by a C++ beginner — powered by HTML, CSS & JavaScript!</p>
+  </footer>
+
+  <script>
+    const correctAnswers = {
+      easy: ["8", "5"],
+      medium: ["48", "20"],
+      hard: ["12", "B"]
+    };
+
+    function showPanel(level) {
+      document.querySelectorAll('.question-panel').forEach(p => p.style.display = 'none');
+      document.getElementById(level).style.display = 'block';
+    }
+
+    function submitAnswers(level) {
+      const questions = document.querySelectorAll(`#${level} .question`);
+      let score = 0;
+
+      questions.forEach((q, index) => {
+        const selected = q.querySelector("input:checked");
+        if (selected && selected.value === correctAnswers[level][index]) {
+          score++;
+        }
+      });
+
+      const total = correctAnswers[level].length;
+      document.getElementById(`${level}-feedback`).textContent = `You got ${score} out of ${total} correct.`;
+    }
+  </script>
+</body>
+</html>
+
