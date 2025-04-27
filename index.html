@@ -140,9 +140,9 @@
       let score = 0;
       let totalQuestions = 0;
 
+      // Easy level answers
       if (level === 'easy') {
         totalQuestions = 3;
-        // Easy Level Answers
         const answer1 = document.getElementById('easy-answer-1').value;
         const answer2 = document.getElementById('easy-answer-2').value;
         const answer3 = document.getElementById('easy-answer-3').value;
@@ -153,9 +153,9 @@
 
         document.getElementById('easy-feedback').innerHTML = `You got ${score} out of ${totalQuestions} correct!`;
 
+      // Medium level answers
       } else if (level === 'medium') {
         totalQuestions = 3;
-        // Medium Level Answers
         const answer1 = document.getElementById('medium-answer-1').value;
         const answer2 = document.getElementById('medium-answer-2').value;
         const answer3 = document.getElementById('medium-answer-3').value;
@@ -166,9 +166,9 @@
 
         document.getElementById('medium-feedback').innerHTML = `You got ${score} out of ${totalQuestions} correct!`;
 
+      // Hard level answers
       } else if (level === 'hard') {
         totalQuestions = 3;
-        // Hard Level Answers
         const answer1 = document.getElementById('hard-answer-1').value;
         const answer2 = document.getElementById('hard-answer-2').value;
         const answer3 = document.getElementById('hard-answer-3').value;
@@ -180,6 +180,17 @@
         document.getElementById('hard-feedback').innerHTML = `You got ${score} out of ${totalQuestions} correct!`;
       }
     }
+
+    // Fix the submit button to run the checkAnswers function
+    document.addEventListener('DOMContentLoaded', function() {
+      const submitButtons = document.querySelectorAll('.submit-btn');
+      submitButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+          const level = event.target.parentElement.id;
+          checkAnswers(level);
+        });
+      });
+    });
   </script>
 </head>
 <body>
@@ -212,7 +223,7 @@
         3. What is 4 + 6? 
         <input type="number" placeholder="Your answer" id="easy-answer-3">
       </div>
-      <button class="submit-btn" onclick="checkAnswers('easy')">Submit Answers</button>
+      <button class="submit-btn">Submit Answers</button>
       <div id="easy-feedback" class="feedback"></div>
     </div>
 
@@ -231,7 +242,7 @@
         3. What is 25 + 17? 
         <input type="number" placeholder="Your answer" id="medium-answer-3">
       </div>
-      <button class="submit-btn" onclick="checkAnswers('medium')">Submit Answers</button>
+      <button class="submit-btn">Submit Answers</button>
       <div id="medium-feedback" class="feedback"></div>
     </div>
 
@@ -249,17 +260,4 @@
       <div class="question">
         3. Solve: (8 + 2) × 5 
         <input type="number" placeholder="Your answer" id="hard-answer-3">
-      </div>
-      <button class="submit-btn" onclick="checkAnswers('hard')">Submit Answers</button>
-      <div id="hard-feedback" class="feedback"></div>
-    </div>
-
-  </div>
-
-  <footer>
-    &copy; 2025 MathQuizProject. All rights reserved.
-  </footer>
-
-</body>
-</html>
-
+      </
