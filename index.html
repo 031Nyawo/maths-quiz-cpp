@@ -6,42 +6,24 @@
   <title>Math Quiz Website</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #e9f5fc;
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      overflow: hidden;
-      color: #333;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
     }
 
     header {
-      background-color: #0066cc;
+      background-color: #4CAF50;
       color: white;
+      width: 100%;
       padding: 20px;
       text-align: center;
-      border-radius: 15px 15px 0 0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-    }
-
-    main {
-      background: #fff;
-      width: 100%;
-      max-width: 900px;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      transform-style: preserve-3d;
-      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-      transition: transform 0.5s;
-    }
-
-    main:hover {
-      transform: rotateX(10deg) rotateY(10deg);
     }
 
     h1 {
@@ -50,10 +32,18 @@
     }
 
     h2 {
-      color: #333;
-      text-align: center;
-      font-size: 24px;
-      margin-top: 20px;
+      margin-top: 10px;
+      font-size: 22px;
+    }
+
+    .quiz-container {
+      background-color: white;
+      width: 80%;
+      max-width: 500px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-top: 30px;
     }
 
     .difficulty-buttons {
@@ -64,26 +54,23 @@
     }
 
     .difficulty-buttons button {
-      padding: 16px 30px;
-      font-size: 18px;
+      padding: 12px 20px;
+      font-size: 16px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      background: linear-gradient(145deg, #6a85b6, #1c2b6b);
+      background-color: #4CAF50;
       color: white;
-      box-shadow: 4px 4px 8px rgba(0,0,0,0.2), -4px -4px 8px rgba(255,255,255,0.2);
       transition: 0.3s;
     }
 
     .difficulty-buttons button:hover {
-      background: linear-gradient(145deg, #1c2b6b, #6a85b6);
-      box-shadow: 4px 4px 12px rgba(0,0,0,0.3), -4px -4px 12px rgba(255,255,255,0.3);
+      background-color: #45a049;
     }
 
     .quiz-section {
       display: none;
       margin-top: 20px;
-      padding: 10px;
     }
 
     .quiz-section.active {
@@ -91,61 +78,41 @@
     }
 
     .question {
+      margin-bottom: 15px;
       font-size: 18px;
-      margin: 10px 0;
-      padding: 10px;
-      background: #f9f9f9;
+    }
+
+    input[type="number"] {
+      padding: 8px;
+      width: 80%;
+      margin-top: 10px;
+      border: 1px solid #ccc;
       border-radius: 8px;
-      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
     }
 
-    .download-panel {
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .download-panel a {
-      display: inline-block;
+    .submit-btn {
+      padding: 10px 20px;
+      margin-top: 20px;
+      border: none;
       background-color: #4CAF50;
       color: white;
-      padding: 16px 25px;
       font-size: 18px;
-      text-decoration: none;
+      cursor: pointer;
       border-radius: 8px;
-      transition: 0.3s;
     }
 
-    .download-panel a:hover {
-      background-color: #388e3c;
-      box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .readme-link {
-      display: block;
-      margin-top: 10px;
-      color: #007bff;
-      font-size: 16px;
-      text-decoration: none;
-      font-weight: bold;
+    .submit-btn:hover {
+      background-color: #45a049;
     }
 
     footer {
-      text-align: center;
-      padding: 20px;
+      margin-top: 40px;
+      padding: 10px;
       font-size: 14px;
       color: #555;
-    }
-
-    .background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, #ffb3b3, #66b3ff);
-      z-index: -1;
-      transform: rotate(30deg);
-      filter: blur(50px);
+      background-color: #f1f1f1;
+      width: 100%;
+      text-align: center;
     }
   </style>
   <script>
@@ -159,68 +126,80 @@
 <body>
 
   <header>
-    <h1>🧠 Math Quiz Website</h1>
-    <p>Test your math skills with fun challenges! Choose your level below.</p>
+    <h1>Math Quiz Website</h1>
+    <h2>Test your math skills at different levels!</h2>
   </header>
 
-  <main>
+  <div class="quiz-container">
+    <h3>Select Your Difficulty Level</h3>
+    <div class="difficulty-buttons">
+      <button onclick="showQuiz('easy')">Easy</button>
+      <button onclick="showQuiz('medium')">Medium</button>
+      <button onclick="showQuiz('hard')">Hard</button>
+    </div>
 
-    <!-- Difficulty Selector -->
-    <section>
-      <h2>Select Your Difficulty Level</h2>
-      <div class="difficulty-buttons">
-        <button onclick="showQuiz('easy')">Easy</button>
-        <button onclick="showQuiz('medium')">Medium</button>
-        <button onclick="showQuiz('hard')">Hard</button>
+    <!-- Easy Questions -->
+    <div id="easy" class="quiz-section">
+      <h3>Easy Level</h3>
+      <div class="question">
+        1. What is 2 + 3? 
+        <input type="number" placeholder="Your answer" id="easy-answer-1">
       </div>
-
-      <!-- Easy Questions -->
-      <div id="easy" class="quiz-section">
-        <h3>🟢 Easy Level</h3>
-        <div class="question">1. What is 2 + 3?</div>
-        <div class="question">2. What is 5 - 1?</div>
-        <div class="question">3. What is 4 + 6?</div>
+      <div class="question">
+        2. What is 5 - 1? 
+        <input type="number" placeholder="Your answer" id="easy-answer-2">
       </div>
-
-      <!-- Medium Questions -->
-      <div id="medium" class="quiz-section">
-        <h3>🟡 Medium Level</h3>
-        <div class="question">1. What is 12 × 3?</div>
-        <div class="question">2. What is 45 ÷ 5?</div>
-        <div class="question">3. What is 25 + 17?</div>
+      <div class="question">
+        3. What is 4 + 6? 
+        <input type="number" placeholder="Your answer" id="easy-answer-3">
       </div>
+      <button class="submit-btn">Submit Answers</button>
+    </div>
 
-      <!-- Hard Questions -->
-      <div id="hard" class="quiz-section">
-        <h3>🔴 Hard Level</h3>
-        <div class="question">1. What is 15²?</div>
-        <div class="question">2. What is √144?</div>
-        <div class="question">3. Solve: (8 + 2) × 5</div>
+    <!-- Medium Questions -->
+    <div id="medium" class="quiz-section">
+      <h3>Medium Level</h3>
+      <div class="question">
+        1. What is 12 × 3? 
+        <input type="number" placeholder="Your answer" id="medium-answer-1">
       </div>
-    </section>
-
-    <!-- C++ Game Access -->
-    <section>
-      <h2>🎮 Play the Terminal Math Flash Game (C++)</h2>
-      <p style="text-align: center;">
-        Want a challenge from the command line? Download and run our C++ version of the math quiz game!
-      </p>
-      <div class="download-panel">
-        <a href="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/math_flash_game.cpp" download>📥 Download Game (.cpp)</a>
-        <a class="readme-link" href="https://github.com/YOUR_USERNAME/YOUR_REPO#-terminal-math-flash-game-c" target="_blank">📖 View Instructions</a>
+      <div class="question">
+        2. What is 45 ÷ 5? 
+        <input type="number" placeholder="Your answer" id="medium-answer-2">
       </div>
-    </section>
+      <div class="question">
+        3. What is 25 + 17? 
+        <input type="number" placeholder="Your answer" id="medium-answer-3">
+      </div>
+      <button class="submit-btn">Submit Answers</button>
+    </div>
 
-  </main>
+    <!-- Hard Questions -->
+    <div id="hard" class="quiz-section">
+      <h3>Hard Level</h3>
+      <div class="question">
+        1. What is 15²? 
+        <input type="number" placeholder="Your answer" id="hard-answer-1">
+      </div>
+      <div class="question">
+        2. What is √144? 
+        <input type="number" placeholder="Your answer" id="hard-answer-2">
+      </div>
+      <div class="question">
+        3. Solve: (8 + 2) × 5 
+        <input type="number" placeholder="Your answer" id="hard-answer-3">
+      </div>
+      <button class="submit-btn">Submit Answers</button>
+    </div>
+
+  </div>
 
   <footer>
     &copy; 2025 MathQuizProject. All rights reserved.
   </footer>
 
-  <!-- Background Effect -->
-  <div class="background"></div>
-
 </body>
 </html>
+
 
 
