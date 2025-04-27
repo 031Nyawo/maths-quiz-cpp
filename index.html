@@ -2,226 +2,179 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Math & C++ Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Math Quiz Website</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #eef2f3, #8e9eab);
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background: #2c3e50;
-      color: white;
-      padding: 1rem;
+      background: linear-gradient(#e0eafc, #cfdef3);
       text-align: center;
+      padding: 20px;
     }
-
-    .container {
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
+    h1 {
+      color: #333;
     }
-
-    .level-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
     .level-buttons button {
-      padding: 0.75rem 1.5rem;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
       font-size: 16px;
       cursor: pointer;
-      border: none;
-      background-color: #3498db;
-      color: white;
-      border-radius: 10px;
-      transition: background-color 0.3s;
+      border-radius: 8px;
     }
-
     .level-buttons button:hover {
-      background-color: #2980b9;
+      background-color: #0056b3;
     }
-
     .question-panel {
       display: none;
-      margin-top: 1rem;
-      background: white;
-      padding: 1rem;
+      margin-top: 20px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #fff;
+      padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-
     .question {
-      margin-bottom: 1.5rem;
+      margin-bottom: 20px;
     }
-
-    .question p {
-      margin: 0.5rem 0;
-    }
-
-    label {
-      display: block;
-      margin-left: 1rem;
-      margin-bottom: 0.3rem;
-    }
-
     .submit-btn {
-      padding: 0.5rem 1rem;
-      background-color: #27ae60;
+      padding: 10px 15px;
+      font-size: 16px;
+      background-color: #28a745;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
     }
-
-    .submit-btn:hover {
-      background-color: #1e8449;
-    }
-
     .feedback {
-      margin-top: 1rem;
+      margin-top: 10px;
       font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #ecf0f1;
-      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>Math & C++ Quiz</h1>
-    <p>Select your difficulty level and answer the questions</p>
-  </header>
-
-  <div class="container">
-    <div class="level-buttons">
-      <button onclick="showPanel('easy')">Easy</button>
-      <button onclick="showPanel('medium')">Medium</button>
-      <button onclick="showPanel('hard')">Hard</button>
-    </div>
-
-    <!-- Easy Panel -->
-    <div id="easy" class="question-panel">
-      <h2>Easy Questions</h2>
-
-      <div class="question">
-        <p>1. What is 5 + 3?</p>
-        <label><input type="radio" name="easy-q1" value="6">6</label>
-        <label><input type="radio" name="easy-q1" value="7">7</label>
-        <label><input type="radio" name="easy-q1" value="8">8</label>
-        <label><input type="radio" name="easy-q1" value="9">9</label>
-      </div>
-
-      <div class="question">
-        <p>2. What is 9 - 4?</p>
-        <label><input type="radio" name="easy-q2" value="4">4</label>
-        <label><input type="radio" name="easy-q2" value="5">5</label>
-        <label><input type="radio" name="easy-q2" value="6">6</label>
-        <label><input type="radio" name="easy-q2" value="7">7</label>
-      </div>
-
-      <button class="submit-btn" onclick="submitAnswers('easy')">Submit Answers</button>
-      <div id="easy-feedback" class="feedback"></div>
-    </div>
-
-    <!-- Medium Panel -->
-    <div id="medium" class="question-panel">
-      <h2>Medium Questions</h2>
-
-      <div class="question">
-        <p>1. What is 12 × 4?</p>
-        <label><input type="radio" name="medium-q1" value="36">36</label>
-        <label><input type="radio" name="medium-q1" value="48">48</label>
-        <label><input type="radio" name="medium-q1" value="52">52</label>
-        <label><input type="radio" name="medium-q1" value="44">44</label>
-      </div>
-
-      <div class="question">
-        <p>2. What is 100 ÷ 5?</p>
-        <label><input type="radio" name="medium-q2" value="20">20</label>
-        <label><input type="radio" name="medium-q2" value="25">25</label>
-        <label><input type="radio" name="medium-q2" value="30">30</label>
-        <label><input type="radio" name="medium-q2" value="35">35</label>
-      </div>
-
-      <button class="submit-btn" onclick="submitAnswers('medium')">Submit Answers</button>
-      <div id="medium-feedback" class="feedback"></div>
-    </div>
-
-    <!-- Hard Panel -->
-    <div id="hard" class="question-panel">
-      <h2>Hard Questions</h2>
-
-      <div class="question">
-        <p>1. What is the output of the following C++ code?</p>
-<pre>
-#include &lt;iostream&gt;
-using namespace std;
-int main() {
-    int x = 5;
-    cout &lt;&lt; x++ + ++x;
-    return 0;
-}
-</pre>
-        <label><input type="radio" name="hard-q1" value="10">10</label>
-        <label><input type="radio" name="hard-q1" value="11">11</label>
-        <label><input type="radio" name="hard-q1" value="12">12</label>
-        <label><input type="radio" name="hard-q1" value="13">13</label>
-      </div>
-
-      <div class="question">
-        <p>2. What does the <code>virtual</code> keyword do in C++?</p>
-        <label><input type="radio" name="hard-q2" value="A">A. Make a variable global</label>
-        <label><input type="radio" name="hard-q2" value="B">B. Allows overriding in derived classes</label>
-        <label><input type="radio" name="hard-q2" value="C">C. Memory allocation</label>
-        <label><input type="radio" name="hard-q2" value="D">D. Make class abstract</label>
-      </div>
-
-      <button class="submit-btn" onclick="submitAnswers('hard')">Submit Answers</button>
-      <div id="hard-feedback" class="feedback"></div>
-    </div>
+  <h1>Basic Math Quiz</h1>
+  <div class="level-buttons">
+    <button onclick="showPanel('easy')">Easy</button>
+    <button onclick="showPanel('medium')">Medium</button>
+    <button onclick="showPanel('hard')">Hard</button>
   </div>
 
-  <footer>
-    <p>Made by a C++ beginner — powered by HTML, CSS & JavaScript!</p>
-  </footer>
+  <!-- Easy Panel -->
+  <div id="easy" class="question-panel">
+    <h2>Easy Math Questions</h2>
+    <div class="question">
+      <p>1. What is 4 + 4?</p>
+      <label><input type="radio" name="easy-q1" value="7">7</label>
+      <label><input type="radio" name="easy-q1" value="8">8</label>
+      <label><input type="radio" name="easy-q1" value="9">9</label>
+    </div>
+    <div class="question">
+      <p>2. What is 10 - 5?</p>
+      <label><input type="radio" name="easy-q2" value="4">4</label>
+      <label><input type="radio" name="easy-q2" value="5">5</label>
+      <label><input type="radio" name="easy-q2" value="6">6</label>
+    </div>
+    <button class="submit-btn" onclick="submitAnswers('easy')">Submit Answers</button>
+    <div id="easy-feedback" class="feedback"></div>
+  </div>
+
+  <!-- Medium Panel -->
+  <div id="medium" class="question-panel">
+    <h2>Medium Math Questions</h2>
+    <div class="question">
+      <p>1. What is 6 × 8?</p>
+      <label><input type="radio" name="medium-q1" value="42">42</label>
+      <label><input type="radio" name="medium-q1" value="48">48</label>
+      <label><input type="radio" name="medium-q1" value="56">56</label>
+    </div>
+    <div class="question">
+      <p>2. What is 100 ÷ 5?</p>
+      <label><input type="radio" name="medium-q2" value="15">15</label>
+      <label><input type="radio" name="medium-q2" value="20">20</label>
+      <label><input type="radio" name="medium-q2" value="25">25</label>
+    </div>
+    <button class="submit-btn" onclick="submitAnswers('medium')">Submit Answers</button>
+    <div id="medium-feedback" class="feedback"></div>
+  </div>
+
+  <!-- Hard Panel -->
+  <div id="hard" class="question-panel">
+    <h2>Hard Math Questions</h2>
+
+    <div class="question">
+      <p>1. What is (15 × 4) + (10 ÷ 2)?</p>
+      <label><input type="radio" name="hard-q1" value="70">70</label>
+      <label><input type="radio" name="hard-q1" value="80">80</label>
+      <label><input type="radio" name="hard-q1" value="65">65</label>
+      <label><input type="radio" name="hard-q1" value="60">60</label>
+    </div>
+
+    <div class="question">
+      <p>2. What is the square root of 144?</p>
+      <label><input type="radio" name="hard-q2" value="10">10</label>
+      <label><input type="radio" name="hard-q2" value="11">11</label>
+      <label><input type="radio" name="hard-q2" value="12">12</label>
+      <label><input type="radio" name="hard-q2" value="13">13</label>
+    </div>
+
+    <div class="question">
+      <p>3. What is 2³ × 3²?</p>
+      <label><input type="radio" name="hard-q3" value="72">72</label>
+      <label><input type="radio" name="hard-q3" value="36">36</label>
+      <label><input type="radio" name="hard-q3" value="64">64</label>
+      <label><input type="radio" name="hard-q3" value="48">48</label>
+    </div>
+
+    <div class="question">
+      <p>4. What is (5² + 3²) ÷ 2?</p>
+      <label><input type="radio" name="hard-q4" value="17">17</label>
+      <label><input type="radio" name="hard-q4" value="18">18</label>
+      <label><input type="radio" name="hard-q4" value="19">19</label>
+      <label><input type="radio" name="hard-q4" value="20">20</label>
+    </div>
+
+    <div class="question">
+      <p>5. What is (100 ÷ 4) + (8 × 2)?</p>
+      <label><input type="radio" name="hard-q5" value="42">42</label>
+      <label><input type="radio" name="hard-q5" value="41">41</label>
+      <label><input type="radio" name="hard-q5" value="40">40</label>
+      <label><input type="radio" name="hard-q5" value="44">44</label>
+    </div>
+
+    <button class="submit-btn" onclick="submitAnswers('hard')">Submit Answers</button>
+    <div id="hard-feedback" class="feedback"></div>
+  </div>
 
   <script>
     const correctAnswers = {
       easy: ["8", "5"],
       medium: ["48", "20"],
-      hard: ["12", "B"]
+      hard: ["70", "12", "72", "17", "44"]
     };
 
     function showPanel(level) {
-      document.querySelectorAll('.question-panel').forEach(p => p.style.display = 'none');
+      const panels = document.querySelectorAll('.question-panel');
+      panels.forEach(panel => panel.style.display = 'none');
       document.getElementById(level).style.display = 'block';
     }
 
     function submitAnswers(level) {
       const questions = document.querySelectorAll(`#${level} .question`);
       let score = 0;
-
-      questions.forEach((q, index) => {
-        const selected = q.querySelector("input:checked");
-        if (selected && selected.value === correctAnswers[level][index]) {
+      questions.forEach((q, i) => {
+        const selected = q.querySelector('input[type="radio"]:checked');
+        if (selected && selected.value === correctAnswers[level][i]) {
           score++;
         }
       });
-
-      const total = correctAnswers[level].length;
-      document.getElementById(`${level}-feedback`).textContent = `You got ${score} out of ${total} correct.`;
+      document.getElementById(`${level}-feedback`).innerText =
+        `You got ${score} out of ${questions.length} correct!`;
     }
   </script>
 </body>
