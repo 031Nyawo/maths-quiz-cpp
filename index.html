@@ -105,6 +105,20 @@
       background-color: #45a049;
     }
 
+    .feedback {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
+    }
+
     footer {
       margin-top: 40px;
       padding: 10px;
@@ -120,6 +134,51 @@
       const sections = document.querySelectorAll('.quiz-section');
       sections.forEach(sec => sec.classList.remove('active'));
       document.getElementById(level).classList.add('active');
+    }
+
+    function checkAnswers(level) {
+      let score = 0;
+      let totalQuestions = 0;
+
+      if (level === 'easy') {
+        totalQuestions = 3;
+        // Easy Level Answers
+        const answer1 = document.getElementById('easy-answer-1').value;
+        const answer2 = document.getElementById('easy-answer-2').value;
+        const answer3 = document.getElementById('easy-answer-3').value;
+
+        if (answer1 == 5) score++;
+        if (answer2 == 4) score++;
+        if (answer3 == 10) score++;
+
+        document.getElementById('easy-feedback').innerHTML = `You got ${score} out of ${totalQuestions} correct!`;
+
+      } else if (level === 'medium') {
+        totalQuestions = 3;
+        // Medium Level Answers
+        const answer1 = document.getElementById('medium-answer-1').value;
+        const answer2 = document.getElementById('medium-answer-2').value;
+        const answer3 = document.getElementById('medium-answer-3').value;
+
+        if (answer1 == 36) score++;
+        if (answer2 == 9) score++;
+        if (answer3 == 42) score++;
+
+        document.getElementById('medium-feedback').innerHTML = `You got ${score} out of ${totalQuestions} correct!`;
+
+      } else if (level === 'hard') {
+        totalQuestions = 3;
+        // Hard Level Answers
+        const answer1 = document.getElementById('hard-answer-1').value;
+        const answer2 = document.getElementById('hard-answer-2').value;
+        const answer3 = document.getElementById('hard-answer-3').value;
+
+        if (answer1 == 225) score++;
+        if (answer2 == 12) score++;
+        if (answer3 == 50) score++;
+
+        document.getElementById('hard-feedback').innerHTML = `You got ${score} out of ${totalQuestions} correct!`;
+      }
     }
   </script>
 </head>
@@ -153,7 +212,8 @@
         3. What is 4 + 6? 
         <input type="number" placeholder="Your answer" id="easy-answer-3">
       </div>
-      <button class="submit-btn">Submit Answers</button>
+      <button class="submit-btn" onclick="checkAnswers('easy')">Submit Answers</button>
+      <div id="easy-feedback" class="feedback"></div>
     </div>
 
     <!-- Medium Questions -->
@@ -171,7 +231,8 @@
         3. What is 25 + 17? 
         <input type="number" placeholder="Your answer" id="medium-answer-3">
       </div>
-      <button class="submit-btn">Submit Answers</button>
+      <button class="submit-btn" onclick="checkAnswers('medium')">Submit Answers</button>
+      <div id="medium-feedback" class="feedback"></div>
     </div>
 
     <!-- Hard Questions -->
@@ -189,7 +250,8 @@
         3. Solve: (8 + 2) × 5 
         <input type="number" placeholder="Your answer" id="hard-answer-3">
       </div>
-      <button class="submit-btn">Submit Answers</button>
+      <button class="submit-btn" onclick="checkAnswers('hard')">Submit Answers</button>
+      <div id="hard-feedback" class="feedback"></div>
     </div>
 
   </div>
@@ -200,6 +262,3 @@
 
 </body>
 </html>
-
-
-
